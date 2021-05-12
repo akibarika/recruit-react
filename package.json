@@ -1,5 +1,5 @@
 {
-  "name": "register-card-form-app",
+  "name": "recruit-react",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -59,10 +59,13 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged && pretty-quick --staged"
+      "applypatch-msg": "echo \"[Husky] applypatch-msg\"",
+      "pre-applypatch": "echo \"[Husky] pre-applypatch\"",
+      "post-applypatch": "echo \"[Husky] post-applypatch\"",
+      "pre-commit": "echo \"[Husky] pre-commit\""
     }
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx}": "eslint --cache --fix"
+    "*.{js,jsx,ts,tsx}": "node_modules/.bin/eslint --cache --fix"
   }
 }
