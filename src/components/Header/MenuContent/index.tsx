@@ -3,7 +3,7 @@ import { List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
 import AppsIcon from '@material-ui/icons/Apps';
 import CalendarViewDayIcon from '@material-ui/icons/CalendarViewDay';
 
-const MenuContent = () => {
+const MenuContent: React.FC = () => {
 	return (
 		<>
 			<List>

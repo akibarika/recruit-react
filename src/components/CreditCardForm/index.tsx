@@ -1,7 +1,7 @@
 import React from 'react';
 import { TextField, Grid, Typography } from '@material-ui/core';
 
-const CreditCardFrom = () => {
+const CreditCardFrom: React.FC = () => {
 	return (
 		<>
 			<Grid container spacing={2}>
