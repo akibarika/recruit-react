@@ -1,24 +1,15 @@
 import React from 'react';
-import './App.css'
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route
-} from "react-router-dom";
-
-
+import './App.css';
 import RegisterCardForm from './components/CreditCardForm';
-import Menu from './components/Menu';
+import Header from './components/Header';
 
 const App = () => {
-    return (
-        <Router>
-            <Switch>
-                <Route path="/" component={RegisterCardForm} exact/>
-                <Route path="/menu" component={Menu} exact/>
-            </Switch>
-        </Router>
-    );
-}
+	return (
+		<>
+			<Header />
+			<RegisterCardForm />
+		</>
+	);
+};
 
 export default App;
