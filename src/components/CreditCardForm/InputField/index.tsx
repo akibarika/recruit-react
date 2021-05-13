@@ -12,12 +12,14 @@ const useStyles = makeStyles((theme: Theme) =>
 		},
 	})
 );
-const InputField: React.FC<Props> = (props) => {
-	const { ...restOfProps } = props;
+const InputField: React.FC<Props> = (props: Props) => {
+	const { errorText, ...restOfProps } = props;
 	const classes = useStyles();
 	return (
 		<TextField
 			variant="outlined"
+			error={errorText ? true : false}
+			helperText={errorText}
 			required
 			fullWidth
 			InputLabelProps={{ shrink: true }}

@@ -2,6 +2,7 @@ import React from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import { Grid, Typography } from '@material-ui/core';
 import { useForm, FormProvider } from 'react-hook-form';
+import cardValidator from 'card-validator';
 import InputFieldController from './InputField/InputFieldController';
 import PayButton from './PayButton';
 
@@ -42,13 +43,52 @@ const CreditCardFrom: React.FC = () => {
 						<InputFieldController
 							label="Credit Card Number"
 							name="cardNumber"
+							rules={{
+								required: 'Credit Card Number is required.',
+								validate: {
+									isValid: (value: string) => {
+										return (
+											cardValidator.number(value).isValid ||
+											'Credit Card Number is invalid.'
+										);
+									},
+								},
+							}}
 						/>
 					</Grid>
 					<Grid item xs={12} sm={6}>
-						<InputFieldController label="CVC" name="cvc" />
+						<InputFieldController
+							label="CVC"
+							name="cvc"
+							rules={{
+								required: 'Card CVC number is required.',
+								validate: {
+									isValid: (value: string) => {
+										return (
+											cardValidator.cvv(value, 3).isValid ||
+											'Credit CVC number is invalid.'
+										);
+									},
+								},
+							}}
+						/>
 					</Grid>
 					<Grid item xs={12} sm={6}>
-						<InputFieldController label="Expiration Date" name="expiration" />
+						<InputFieldController
+							label="Expiration Date"
+							name="expiration"
+							rules={{
+								required: 'Card Expiration Date is required.',
+								validate: {
+									isValid: (value: string) => {
+										return (
+											cardValidator.expirationDate(value).isValid ||
+											'Card Expiration Date is invalid.'
+										);
+									},
+								},
+							}}
+						/>
 					</Grid>
 					<Grid item xs={12}>
 						<PayButton onClick={formMethods.handleSubmit(onSubmit)} />
