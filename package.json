@@ -47,6 +47,8 @@
     ]
   },
   "devDependencies": {
+    "@types/prettier": "^2.2.3",
+    "@types/pretty-quick": "^2.0.0",
     "@typescript-eslint/eslint-plugin": "^4.23.0",
     "@typescript-eslint/parser": "^4.23.0",
     "eslint": "^7.26.0",

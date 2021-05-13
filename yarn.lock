@@ -1854,10 +1854,22 @@
   resolved "https://registry.npmjs.org/@types/parse-json/-/parse-json-4.0.0.tgz"
   integrity sha512-//oorEZjL6sbPcKUaCdIGlIUeH26mgzimjBB77G6XRgnDl/L5wOnpyBGRe/Mmf5CVW3PwEBE1NjiMZ/ssFh4wA==
 
+"@types/prettier@*", "@types/prettier@^2.2.3":
+  version "2.2.3"
+  resolved "https://registry.yarnpkg.com/@types/prettier/-/prettier-2.2.3.tgz#ef65165aea2924c9359205bf748865b8881753c0"
+  integrity sha512-PijRCG/K3s3w1We6ynUKdxEc5AcuuH3NBmMDP8uvKVp6X43UY7NQlTzczakXP3DJR0F4dfNQIGjU2cUeRYs2AA==
+
 "@types/prettier@^2.0.0":
   version "2.2.1"
   resolved "https://registry.npmjs.org/@types/prettier/-/prettier-2.2.1.tgz"
   integrity sha512-DxZZbyMAM9GWEzXL+BMZROWz9oo6A9EilwwOMET2UVu2uZTqMWS5S69KVtuVKaRjCUpcrOXRalet86/OpG4kqw==
+
+"@types/pretty-quick@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@types/pretty-quick/-/pretty-quick-2.0.0.tgz#13a71a31f7efd18be0c85ce896db97d85815ea10"
+  integrity sha512-4PRzn2z3EU2zV92l8IVNhZCNmE71Tv9ehJXeKc3ANCri5L5/rHaEg7uIJOUUVIc5j+DqENeCQ5keDa2AvjNlMw==
+  dependencies:
+    "@types/prettier" "*"
 
 "@types/prop-types@*":
   version "15.7.3"
