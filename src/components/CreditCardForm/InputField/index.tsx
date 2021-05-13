@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme: Theme) =>
 		},
 	})
 );
-const TextInput: React.FC<Props> = (props) => {
+const InputField: React.FC<Props> = (props) => {
 	const { ...restOfProps } = props;
 	const classes = useStyles();
 	return (
@@ -29,4 +29,4 @@ const TextInput: React.FC<Props> = (props) => {
 	);
 };
 
-export default TextInput;
+export default InputField;

@@ -2,7 +2,7 @@ import React from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import { Grid, Typography } from '@material-ui/core';
 import { useForm, FormProvider } from 'react-hook-form';
-import TextInputHook from './TextInput/TextInputHook';
+import InputFieldController from './InputField/InputFieldController';
 import PayButton from './PayButton';
 
 interface creditCardFormProps {
@@ -39,13 +39,16 @@ const CreditCardFrom: React.FC = () => {
 				</Grid>
 				<FormProvider {...formMethods}>
 					<Grid item xs={12}>
-						<TextInputHook label="Credit Card Number" name="cardNumber" />
+						<InputFieldController
+							label="Credit Card Number"
+							name="cardNumber"
+						/>
 					</Grid>
 					<Grid item xs={12} sm={6}>
-						<TextInputHook label="CVC" name="cvc" />
+						<InputFieldController label="CVC" name="cvc" />
 					</Grid>
 					<Grid item xs={12} sm={6}>
-						<TextInputHook label="Expiration Date" name="expiration" />
+						<InputFieldController label="Expiration Date" name="expiration" />
 					</Grid>
 					<Grid item xs={12}>
 						<PayButton onClick={formMethods.handleSubmit(onSubmit)} />
