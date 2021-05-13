@@ -6,10 +6,15 @@ import cardValidator from 'card-validator';
 import InputFieldController from './InputField/InputFieldController';
 import PayButton from './PayButton';
 
+import {
+	creditCardExpirationDateFormatter,
+	creditCardNumberFormatter,
+} from '../../services/cardFormatters';
+
 interface creditCardFormProps {
 	cardNumber: string;
 	expiration: string;
-	cvc: string;
+	cvv: string;
 }
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -23,10 +28,11 @@ const useStyles = makeStyles((theme: Theme) =>
 const CreditCardFrom: React.FC = () => {
 	const classes = useStyles();
 	const formMethods = useForm<creditCardFormProps>({
+		reValidateMode: 'onChange',
 		defaultValues: {
 			cardNumber: '',
 			expiration: '',
-			cvc: '',
+			cvv: '',
 		},
 	});
 	const onSubmit = (model: creditCardFormProps) => {
@@ -43,10 +49,12 @@ const CreditCardFrom: React.FC = () => {
 						<InputFieldController
 							label="Credit Card Number"
 							name="cardNumber"
+							placeholder="1234 5678 1234 5678"
 							inputProps={{
-								maxLength: 16,
+								maxLength: 19,
 							}}
-							validationLength={16}
+							validationLength={19}
+							formatter={creditCardNumberFormatter}
 							rules={{
 								required: 'Credit Card Number is required.',
 								validate: {
@@ -64,6 +72,7 @@ const CreditCardFrom: React.FC = () => {
 						<InputFieldController
 							label="CVV"
 							name="cvv"
+							placeholder="123"
 							inputProps={{
 								maxLength: 3,
 							}}
@@ -85,10 +94,12 @@ const CreditCardFrom: React.FC = () => {
 						<InputFieldController
 							label="Expiration Date"
 							name="expiration"
+							placeholder="MM/YY"
 							inputProps={{
 								maxLength: 5,
 							}}
 							validationLength={5}
+							formatter={creditCardExpirationDateFormatter}
 							rules={{
 								required: 'Card Expiration Date is required.',
 								validate: {

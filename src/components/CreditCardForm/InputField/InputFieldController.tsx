@@ -6,9 +6,16 @@ type Props = React.ComponentProps<typeof TextInput> & {
 	name: string;
 	rules: RegisterOptions;
 	validationLength?: number;
+	formatter?: (value: string) => string;
 };
 const InputFieldController: React.FC<Props> = (props: Props) => {
-	const { name, rules, validationLength = 0, ...restOfProps } = props,
+	const {
+			name,
+			rules,
+			validationLength = 0,
+			formatter,
+			...restOfProps
+		} = props,
 		{
 			control,
 			formState: { errors },
@@ -30,7 +37,10 @@ const InputFieldController: React.FC<Props> = (props: Props) => {
 				<TextInput
 					{...restOfProps}
 					errorText={errors[name]?.message}
-					onChange={(value) => onChange(value)}
+					onChange={(value) => {
+						const newValue = formatter ? formatter(value.target.value) : value;
+						onChange(newValue);
+					}}
 					value={value}
 				/>
 			)}

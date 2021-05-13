@@ -27,6 +27,7 @@ const InputField: React.FC<Props> = (props: Props) => {
 			InputProps={{
 				className: classes.input,
 			}}
+			value={value}
 			{...restOfProps}
 		/>
 	);
