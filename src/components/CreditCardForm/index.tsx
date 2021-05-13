@@ -43,6 +43,9 @@ const CreditCardFrom: React.FC = () => {
 						<InputFieldController
 							label="Credit Card Number"
 							name="cardNumber"
+							inputProps={{
+								maxLength: 16,
+							}}
 							rules={{
 								required: 'Credit Card Number is required.',
 								validate: {
@@ -58,15 +61,18 @@ const CreditCardFrom: React.FC = () => {
 					</Grid>
 					<Grid item xs={12} sm={6}>
 						<InputFieldController
-							label="CVC"
-							name="cvc"
+							label="CVV"
+							name="cvv"
+							inputProps={{
+								maxLength: 3,
+							}}
 							rules={{
-								required: 'Card CVC number is required.',
+								required: 'Card CVV number is required.',
 								validate: {
 									isValid: (value: string) => {
 										return (
 											cardValidator.cvv(value, 3).isValid ||
-											'Credit CVC number is invalid.'
+											'Credit CVV number is invalid.'
 										);
 									},
 								},
@@ -77,6 +83,9 @@ const CreditCardFrom: React.FC = () => {
 						<InputFieldController
 							label="Expiration Date"
 							name="expiration"
+							inputProps={{
+								maxLength: 5,
+							}}
 							rules={{
 								required: 'Card Expiration Date is required.',
 								validate: {
