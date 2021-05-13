@@ -46,6 +46,7 @@ const CreditCardFrom: React.FC = () => {
 							inputProps={{
 								maxLength: 16,
 							}}
+							validationLength={16}
 							rules={{
 								required: 'Credit Card Number is required.',
 								validate: {
@@ -66,6 +67,7 @@ const CreditCardFrom: React.FC = () => {
 							inputProps={{
 								maxLength: 3,
 							}}
+							validationLength={3}
 							rules={{
 								required: 'Card CVV number is required.',
 								validate: {
@@ -86,6 +88,7 @@ const CreditCardFrom: React.FC = () => {
 							inputProps={{
 								maxLength: 5,
 							}}
+							validationLength={5}
 							rules={{
 								required: 'Card Expiration Date is required.',
 								validate: {
