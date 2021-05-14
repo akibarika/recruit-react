@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-import { Grid, Typography } from '@material-ui/core';
+import { Grid, Typography, InputAdornment } from '@material-ui/core';
+import IconButton from '@material-ui/core/IconButton';
+import VisibilityIcon from '@material-ui/icons/Visibility';
+import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 import { useForm, FormProvider } from 'react-hook-form';
 import cardValidator from 'card-validator';
 import InputFieldController from './InputField/InputFieldController';
@@ -27,6 +30,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const CreditCardFrom: React.FC = () => {
 	const classes = useStyles();
+	const [showCvv, setShowCvv] = useState(false);
 	const formMethods = useForm<creditCardFormProps>({
 		reValidateMode: 'onChange',
 		defaultValues: {
@@ -37,6 +41,9 @@ const CreditCardFrom: React.FC = () => {
 	});
 	const onSubmit = (model: creditCardFormProps) => {
 		console.log('form submitted', model);
+	};
+	const handleClickShowCvv = () => {
+		setShowCvv(!showCvv);
 	};
 	return (
 		<>
@@ -72,9 +79,22 @@ const CreditCardFrom: React.FC = () => {
 						<InputFieldController
 							label="CVV"
 							name="cvv"
+							type={showCvv ? 'text' : 'password'}
 							placeholder="123"
 							inputProps={{
 								maxLength: 3,
+							}}
+							InputProps={{
+								endAdornment: (
+									<InputAdornment position="end">
+										<IconButton
+											aria-label="toggle password visibility"
+											onClick={handleClickShowCvv}
+										>
+											{showCvv ? <VisibilityIcon /> : <VisibilityOffIcon />}
+										</IconButton>
+									</InputAdornment>
+								),
 							}}
 							validationLength={3}
 							rules={{

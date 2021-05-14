@@ -8,9 +8,7 @@ type Props = React.ComponentProps<typeof TextField> & {
 };
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
-		input: {
-			padding: 10,
-		},
+		input: {},
 	})
 );
 const InputField: React.FC<Props> = (props: Props) => {
