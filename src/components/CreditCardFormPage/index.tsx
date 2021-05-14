@@ -3,17 +3,11 @@ import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import { Grid, Typography } from '@material-ui/core';
 import { useForm, FormProvider } from 'react-hook-form';
 import PayButton from './PayButton';
-
 import CreditCardForm from './CreditCardForm';
-
-interface creditCardFormProps {
-	cardNumber: string;
-	expiration: string;
-	cvv: string;
-}
+import { CreditCardFormProps } from '../../types';
 
 type Props = {
-	onSubmitCallback: (model: creditCardFormProps) => Promise<void>;
+	onSubmitCallback: (model: CreditCardFormProps) => Promise<void>;
 };
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -27,7 +21,7 @@ const useStyles = makeStyles((theme: Theme) =>
 const CreditCardFormPage: React.FC<Props> = (props: Props) => {
 	const { onSubmitCallback } = props;
 	const classes = useStyles();
-	const formMethods = useForm<creditCardFormProps>({
+	const formMethods = useForm<CreditCardFormProps>({
 		reValidateMode: 'onChange',
 		defaultValues: {
 			cardNumber: '',
@@ -36,7 +30,7 @@ const CreditCardFormPage: React.FC<Props> = (props: Props) => {
 		},
 	});
 
-	const onSubmit = async (model: creditCardFormProps) => {
+	const onSubmit = async (model: CreditCardFormProps) => {
 		await onSubmitCallback(model);
 	};
 	return (

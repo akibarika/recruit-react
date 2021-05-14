@@ -7,18 +7,13 @@ import {
 	act,
 } from '@testing-library/react';
 import CreditCardFormContainer from '../index';
-
-interface creditCardFormProps {
-	cardNumber: string;
-	expiration: string;
-	cvv: string;
-}
+import { CreditCardFormProps } from '../../../types';
 
 type Props = {
-	onSubmitCallback: (model: creditCardFormProps) => Promise<void>;
+	onSubmitCallback: (model: CreditCardFormProps) => Promise<void>;
 };
 
-const onSubmitCallback: (model: creditCardFormProps) => Promise<void> =
+const onSubmitCallback: (model: CreditCardFormProps) => Promise<void> =
 	jest.fn();
 const renderForm = (): RenderResult => {
 	const props: Props = {

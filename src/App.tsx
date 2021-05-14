@@ -5,6 +5,7 @@ import { purple } from '@material-ui/core/colors';
 import Container from '@material-ui/core/Container';
 import CreditCardFormPage from './components/CreditCardFormPage';
 import Header from './components/Header';
+import { CreditCardFormProps } from './types';
 
 const theme = createMuiTheme({
 	palette: {
@@ -14,13 +15,7 @@ const theme = createMuiTheme({
 	},
 });
 
-interface creditCardFormProps {
-	cardNumber: string;
-	expiration: string;
-	cvv: string;
-}
-
-const onSubmitCallback = (model: creditCardFormProps): Promise<void> => {
+const onSubmitCallback = (model: CreditCardFormProps): Promise<void> => {
 	console.log('Form submitted successfully with ', model);
 	return Promise.resolve();
 };
