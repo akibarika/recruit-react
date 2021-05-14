@@ -3,56 +3,33 @@ import {
 	creditCardNumberFormatter,
 } from './cardFormatters';
 
-describe('Execute Number Formatter function', () => {
-	test.each([
-		{
-			value: '4444111111111111',
-			expected: '4444 1111 1111 1111',
-		},
-		{
-			value: '411111111111',
-			expected: '4111 1111 1111 ',
-		},
-		{
-			value: '4444',
-			expected: '4444 ',
-		},
-		{
-			value: '4111 ',
-			expected: '4111 ',
-		},
-		{
-			value: '4',
-			expected: '4',
-		},
-		{
-			value: '444411111111111122222222',
-			expected: '4444 1111 1111 1111',
-		},
-	])('%s', ({ value, expected }) => {
-		expect(creditCardNumberFormatter(value)).toEqual(expected);
-	});
-});
+describe('cardFormatters should', () => {
+	test.each`
+		value                         | expected
+		${`4444111111111111`}         | ${`4444 1111 1111 1111`}
+		${'411111111111'}             | ${`4111 1111 1111 `}
+		${`4444`}                     | ${`4444 `}
+		${`4111 `}                    | ${`4111 `}
+		${'4'}                        | ${`4`}
+		${'444411111111111122222222'} | ${`4444 1111 1111 1111`}
+	`(
+		'return formatted number $expected when execute $value in it',
+		({ value, expected }) => {
+			expect(creditCardNumberFormatter(value)).toEqual(expected);
+		}
+	);
 
-describe('Execute Number Formatter function', () => {
-	test.each([
-		{
-			value: '1122',
-			expected: '11/22',
-		},
-		{
-			value: '11/22',
-			expected: '11/22',
-		},
-		{
-			value: '11',
-			expected: '11/',
-		},
-		{
-			value: '11/',
-			expected: '11/',
-		},
-	])('%s', ({ value, expected }) => {
-		expect(creditCardExpirationDateFormatter(value)).toEqual(expected);
-	});
+	test.each`
+		value      | expected
+		${`1122`}  | ${`11/22`}
+		${'11/22'} | ${`11/22`}
+		${`11`}    | ${`11/`}
+		${`11/ `}  | ${`11/`}
+		${'11/1'}  | ${`11/1`}
+	`(
+		'return formatted date $expected when execute $value in it',
+		({ value, expected }) => {
+			expect(creditCardExpirationDateFormatter(value)).toEqual(expected);
+		}
+	);
 });
