@@ -3,7 +3,7 @@ import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import ReactCardFlip from 'react-card-flip';
 import PlaceholderText from './Placeholder';
 import CardIcon from '../CardIcon';
-import { ICreditCardFormProps } from '../../../types';
+import { CardProps } from '../../../types';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -99,12 +99,6 @@ const useStyles = makeStyles((theme: Theme) =>
 		},
 	})
 );
-
-type CardProps = {
-	cardType?: string;
-	model: ICreditCardFormProps;
-	isFlipped: boolean;
-};
 
 const Card: React.FC<CardProps> = (props: CardProps) => {
 	const { model, isFlipped } = props;

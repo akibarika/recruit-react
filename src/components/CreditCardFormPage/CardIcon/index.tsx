@@ -2,10 +2,7 @@ import React from 'react';
 import cardValidator from 'card-validator';
 import { Icon } from 'rsuite';
 import { IconNames } from 'rsuite/lib/Icon/Icon';
-
-type CardIconProps = {
-	cardNumber: string;
-};
+import { CardIconProps } from '../../../types';
 
 const CardIcon: React.FC<CardIconProps> = (props: CardIconProps) => {
 	const { cardNumber } = props;

@@ -29,6 +29,21 @@ export type CreditCardFormPageProps = {
 	onSubmitCallback: (model: ICreditCardFormProps) => Promise<void>;
 };
 
+export type CardProps = {
+	cardType?: string;
+	model: ICreditCardFormProps;
+	isFlipped: boolean;
+};
+
+export type PlaceholderTextProps = {
+	value: string;
+	placeholder: string;
+};
+
+export type CardIconProps = {
+	cardNumber: string;
+};
+
 export type CreditCardFormProps = {
 	translations?: PartialTranslations;
 };
