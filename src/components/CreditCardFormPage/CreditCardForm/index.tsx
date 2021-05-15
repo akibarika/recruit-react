@@ -13,6 +13,7 @@ import {
 import CardIcon from '../CardIcon';
 import { getTranslations } from '../../../services/translation';
 import { CreditCardFormProps } from '../../../types';
+import Card from '../Card';
 
 const CreditCardForm: React.FC<CreditCardFormProps> = (
 	props: CreditCardFormProps
@@ -22,11 +23,23 @@ const CreditCardForm: React.FC<CreditCardFormProps> = (
 	const [showCvv, setShowCvv] = useState(false);
 	const { watch } = useFormContext();
 	const cardNumber = watch('cardNumber');
+	const model = watch();
+	const { card } = cardValidator.number(cardNumber);
 	const handleClickShowCvv = () => {
 		setShowCvv(!showCvv);
 	};
 	return (
 		<>
+			<Grid item xs={12}>
+				<Card
+					cardType={card?.type}
+					model={{
+						cardNumber: model.cardNumber,
+						expiration: model.expiration,
+						cvv: model.cvv,
+					}}
+				/>
+			</Grid>
 			<Grid item xs={12}>
 				<InputFieldController
 					label={translations.cardNumber}
