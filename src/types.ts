@@ -20,7 +20,7 @@ export type InputFieldControllerProps = React.ComponentProps<
 	name: string;
 	rules: RegisterOptions;
 	validationLength?: number;
-	formatter?: (value: string) => string;
+	formatter?: (oldValue: string, value: string) => string;
 };
 
 export type PayButtonProps = React.ComponentProps<typeof Button>;

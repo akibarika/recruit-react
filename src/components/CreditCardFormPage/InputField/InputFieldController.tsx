@@ -34,8 +34,10 @@ const InputFieldController: React.FC<InputFieldControllerProps> = (
 				<TextInput
 					{...restOfProps}
 					errorText={errors[name]?.message}
-					onChange={(value) => {
-						const newValue = formatter ? formatter(value.target.value) : value;
+					onChange={(input) => {
+						const newValue = formatter
+							? formatter(value, input.target.value)
+							: input.target.value;
 						onChange(newValue);
 					}}
 					value={value}
