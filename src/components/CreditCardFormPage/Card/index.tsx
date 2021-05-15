@@ -1,6 +1,7 @@
 import React from 'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import ReactCardFlip from 'react-card-flip';
+import { getTranslations } from '../../../services/translation';
 import PlaceholderText from './Placeholder';
 import CardIcon from '../CardIcon';
 import { CardProps } from '../../../types';
@@ -101,7 +102,8 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 const Card: React.FC<CardProps> = (props: CardProps) => {
-	const { model, isFlipped } = props;
+	const { model, isFlipped, translations: partialTranslations } = props;
+	const translations = getTranslations(partialTranslations);
 	const classes = useStyles();
 	return (
 		<>
@@ -115,19 +117,25 @@ const Card: React.FC<CardProps> = (props: CardProps) => {
 							<div className={classes.cardNumber}>
 								<PlaceholderText
 									value={model.cardNumber}
-									placeholder={`**** **** **** ****`}
+									placeholder={translations.cardNumberPlaceholder}
 								/>
 							</div>
 							<div className={classes.cardHolder}>
-								<span className={classes.cardLabel}>Card Holder</span>
-								<div className={classes.cardInfo}>Sawyer Lu</div>
+								<span className={classes.cardLabel}>
+									{translations.cardHolder}
+								</span>
+								<div className={classes.cardInfo}>
+									{translations.cardHolderName}
+								</div>
 							</div>
 							<div className={classes.cardExpire}>
-								<span className={classes.cardLabel}>Expires</span>
+								<span className={classes.cardLabel}>
+									{translations.expirationOnCard}
+								</span>
 								<div className={classes.cardInfo}>
 									<PlaceholderText
 										value={model.expiration}
-										placeholder={`MM/YY`}
+										placeholder={translations.expirationPlaceholder}
 									/>
 								</div>
 							</div>
@@ -137,7 +145,10 @@ const Card: React.FC<CardProps> = (props: CardProps) => {
 							<div className={classes.cardBackContent}>
 								<div className={classes.cardSecret}>
 									<div className={classes.cardCvv}>
-										<PlaceholderText value={model.cvv} placeholder={`***`} />
+										<PlaceholderText
+											value={model.cvv}
+											placeholder={translations.cvvCodePlaceholderOnCard}
+										/>
 									</div>
 								</div>
 							</div>

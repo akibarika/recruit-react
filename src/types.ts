@@ -29,12 +29,6 @@ export type CreditCardFormPageProps = {
 	onSubmitCallback: (model: ICreditCardFormProps) => Promise<void>;
 };
 
-export type CardProps = {
-	cardType?: string;
-	model: ICreditCardFormProps;
-	isFlipped: boolean;
-};
-
 export type PlaceholderTextProps = {
 	value: string;
 	placeholder: string;
@@ -48,6 +42,12 @@ export type CreditCardFormProps = {
 	translations?: PartialTranslations;
 };
 
+export type CardProps = CreditCardFormProps & {
+	cardType?: string;
+	model: ICreditCardFormProps;
+	isFlipped: boolean;
+};
+
 export type TranslationsContext = {
 	cardNumber: string;
 	expiration: string;
@@ -55,13 +55,17 @@ export type TranslationsContext = {
 	submit: string;
 	cardNumberRequired: string;
 	cardNumberInvalid: string;
-	cardNumberPlaceHolder: string;
+	cardNumberPlaceholder: string;
 	expirationRequired: string;
 	expirationInvalid: string;
-	expirationPlaceHolder: string;
+	expirationPlaceholder: string;
 	cvvCodeRequired: string;
 	cvvCodeInvalid: string;
-	cvvCodePlaceHolder: string;
+	cvvCodePlaceholder: string;
+	cardHolder: string;
+	cardHolderName: string;
+	expirationOnCard: string;
+	cvvCodePlaceholderOnCard: string;
 };
 
 type Partial<T> = {

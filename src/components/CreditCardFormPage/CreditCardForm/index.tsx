@@ -46,7 +46,7 @@ const CreditCardForm: React.FC<CreditCardFormProps> = (
 				<InputFieldController
 					label={translations.cardNumber}
 					name="cardNumber"
-					placeholder={translations.cardNumberPlaceHolder}
+					placeholder={translations.cardNumberPlaceholder}
 					inputProps={{
 						maxLength: 19,
 						'data-testid': 'cardNumber',
@@ -79,7 +79,7 @@ const CreditCardForm: React.FC<CreditCardFormProps> = (
 					label={translations.cvvCode}
 					name="cvv"
 					type={showCvv ? 'text' : 'password'}
-					placeholder={translations.cvvCodePlaceHolder}
+					placeholder={translations.cvvCodePlaceholder}
 					inputProps={{
 						maxLength: 3,
 						'data-testid': 'cvv',
@@ -115,7 +115,7 @@ const CreditCardForm: React.FC<CreditCardFormProps> = (
 				<InputFieldController
 					label={translations.expiration}
 					name="expiration"
-					placeholder={translations.expirationPlaceHolder}
+					placeholder={translations.expirationPlaceholder}
 					inputProps={{
 						maxLength: 5,
 						'data-testid': 'expiration',
