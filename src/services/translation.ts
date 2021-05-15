@@ -10,7 +10,7 @@ export function getTranslations(
 		submit: 'Submit',
 		cardNumberRequired: 'Credit Card Number is required.',
 		cardNumberInvalid: 'Credit Card Number is invalid.',
-		cardNumberPlaceholder: '**** **** **** **** ****',
+		cardNumberPlaceholder: '**** **** **** ****',
 		expirationRequired: 'Card Expiration Date is required.',
 		expirationInvalid: 'Card Expiration Date is invalid.',
 		expirationPlaceholder: 'MM/YY',
