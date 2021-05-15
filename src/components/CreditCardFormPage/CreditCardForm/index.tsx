@@ -21,6 +21,7 @@ const CreditCardForm: React.FC<CreditCardFormProps> = (
 	const { translations: partialTranslations } = props;
 	const translations = getTranslations(partialTranslations);
 	const [showCvv, setShowCvv] = useState(false);
+	const [isCvv, setIsCvv] = useState(false);
 	const { watch } = useFormContext();
 	const cardNumber = watch('cardNumber');
 	const model = watch();
@@ -38,6 +39,7 @@ const CreditCardForm: React.FC<CreditCardFormProps> = (
 						expiration: model.expiration,
 						cvv: model.cvv,
 					}}
+					isFlipped={isCvv}
 				/>
 			</Grid>
 			<Grid item xs={12}>
@@ -69,6 +71,7 @@ const CreditCardForm: React.FC<CreditCardFormProps> = (
 							},
 						},
 					}}
+					onFocus={() => setIsCvv(false)}
 				/>
 			</Grid>
 			<Grid item xs={12} sm={6}>
@@ -81,7 +84,6 @@ const CreditCardForm: React.FC<CreditCardFormProps> = (
 						maxLength: 3,
 						'data-testid': 'cvv',
 					}}
-					value=""
 					InputProps={{
 						endAdornment: (
 							<InputAdornment position="end">
@@ -106,6 +108,7 @@ const CreditCardForm: React.FC<CreditCardFormProps> = (
 							},
 						},
 					}}
+					onFocus={() => setIsCvv(true)}
 				/>
 			</Grid>
 			<Grid item xs={12} sm={6}>
@@ -130,6 +133,7 @@ const CreditCardForm: React.FC<CreditCardFormProps> = (
 							},
 						},
 					}}
+					onFocus={() => setIsCvv(false)}
 				/>
 			</Grid>
 		</>
