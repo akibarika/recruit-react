@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import 'rsuite/dist/styles/rsuite-default.css';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import { purple } from '@material-ui/core/colors';
+import { pink } from '@material-ui/core/colors';
 import Container from '@material-ui/core/Container';
 import CreditCardFormPage from './components/CreditCardFormPage';
 import Header from './components/Header';
@@ -11,7 +11,7 @@ import { ICreditCardFormProps } from './types';
 const theme = createMuiTheme({
 	palette: {
 		primary: {
-			main: purple[300],
+			main: pink[300],
 		},
 	},
 });
