@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useFormContext } from 'react-hook-form';
 import { Grid, InputAdornment } from '@material-ui/core';
 import IconButton from '@material-ui/core/IconButton';
 import VisibilityIcon from '@material-ui/icons/Visibility';
@@ -9,9 +10,18 @@ import {
 	creditCardExpirationDateFormatter,
 	creditCardNumberFormatter,
 } from '../../../services/cardFormatters';
+import CardIcon from '../CardIcon';
+import { getTranslations } from '../../../services/translation';
+import { CreditCardFormProps } from '../../../types';
 
-const CreditCardForm: React.FC = () => {
+const CreditCardForm: React.FC<CreditCardFormProps> = (
+	props: CreditCardFormProps
+) => {
+	const { translations: partialTranslations } = props;
+	const translations = getTranslations(partialTranslations);
 	const [showCvv, setShowCvv] = useState(false);
+	const { watch } = useFormContext();
+	const cardNumber = watch('cardNumber');
 	const handleClickShowCvv = () => {
 		setShowCvv(!showCvv);
 	};
@@ -19,22 +29,29 @@ const CreditCardForm: React.FC = () => {
 		<>
 			<Grid item xs={12}>
 				<InputFieldController
-					label="Credit Card Number"
+					label={translations.cardNumber}
 					name="cardNumber"
-					placeholder="1234 5678 1234 5678"
+					placeholder={translations.cardNumberPlaceHolder}
 					inputProps={{
 						maxLength: 19,
 						'data-testid': 'cardNumber',
 					}}
+					InputProps={{
+						endAdornment: (
+							<InputAdornment position="end">
+								<CardIcon cardNumber={cardNumber} />
+							</InputAdornment>
+						),
+					}}
 					validationLength={19}
 					formatter={creditCardNumberFormatter}
 					rules={{
-						required: 'Credit Card Number is required.',
+						required: translations.cardNumberRequired,
 						validate: {
 							isValid: (value: string) => {
 								return (
 									cardValidator.number(value).isValid ||
-									'Credit Card Number is invalid.'
+									translations.cardNumberInvalid
 								);
 							},
 						},
@@ -43,10 +60,10 @@ const CreditCardForm: React.FC = () => {
 			</Grid>
 			<Grid item xs={12} sm={6}>
 				<InputFieldController
-					label="CVV"
+					label={translations.cvvCode}
 					name="cvv"
 					type={showCvv ? 'text' : 'password'}
-					placeholder="123"
+					placeholder={translations.cvvCodePlaceHolder}
 					inputProps={{
 						maxLength: 3,
 						'data-testid': 'cvv',
@@ -66,12 +83,12 @@ const CreditCardForm: React.FC = () => {
 					}}
 					validationLength={3}
 					rules={{
-						required: 'Card CVV number is required.',
+						required: translations.cvvCodeRequired,
 						validate: {
 							isValid: (value: string) => {
 								return (
 									cardValidator.cvv(value, 3).isValid ||
-									'Credit CVV number is invalid.'
+									translations.cvvCodeInvalid
 								);
 							},
 						},
@@ -80,9 +97,9 @@ const CreditCardForm: React.FC = () => {
 			</Grid>
 			<Grid item xs={12} sm={6}>
 				<InputFieldController
-					label="Expiration Date"
+					label={translations.expiration}
 					name="expiration"
-					placeholder="MM/YY"
+					placeholder={translations.expirationPlaceHolder}
 					inputProps={{
 						maxLength: 5,
 						'data-testid': 'expiration',
@@ -90,12 +107,12 @@ const CreditCardForm: React.FC = () => {
 					validationLength={5}
 					formatter={creditCardExpirationDateFormatter}
 					rules={{
-						required: 'Card Expiration Date is required.',
+						required: translations.expirationRequired,
 						validate: {
 							isValid: (value: string) => {
 								return (
 									cardValidator.expirationDate(value).isValid ||
-									'Card Expiration Date is invalid.'
+									translations.expirationInvalid
 								);
 							},
 						},

@@ -1,12 +1,8 @@
 import React from 'react';
 import { TextField } from '@material-ui/core';
+import { InputFieldProps } from '../../../types';
 
-type Props = React.ComponentProps<typeof TextField> & {
-	value?: string | null;
-	errorText?: string | null;
-};
-
-const InputField: React.FC<Props> = (props: Props) => {
+const InputField: React.FC<InputFieldProps> = (props: InputFieldProps) => {
 	const { errorText, value, ...restOfProps } = props;
 	return (
 		<TextField

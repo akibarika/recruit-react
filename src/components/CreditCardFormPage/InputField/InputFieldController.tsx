@@ -1,14 +1,11 @@
 import React, { useEffect } from 'react';
-import { useFormContext, Controller, RegisterOptions } from 'react-hook-form';
+import { useFormContext, Controller } from 'react-hook-form';
 import TextInput from './index';
+import { InputFieldControllerProps } from '../../../types';
 
-type Props = React.ComponentProps<typeof TextInput> & {
-	name: string;
-	rules: RegisterOptions;
-	validationLength?: number;
-	formatter?: (value: string) => string;
-};
-const InputFieldController: React.FC<Props> = (props: Props) => {
+const InputFieldController: React.FC<InputFieldControllerProps> = (
+	props: InputFieldControllerProps
+) => {
 	const {
 			name,
 			rules,

@@ -1,8 +1,7 @@
 import React from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import { Button } from '@material-ui/core';
-
-type Props = React.ComponentProps<typeof Button>;
+import { PayButtonProps } from '../../../types';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -11,7 +10,7 @@ const useStyles = makeStyles((theme: Theme) =>
 		},
 	})
 );
-const PayButton: React.FC<Props> = (props) => {
+const PayButton: React.FC<PayButtonProps> = (props) => {
 	const classes = useStyles();
 	const { ...restOfProps } = props;
 

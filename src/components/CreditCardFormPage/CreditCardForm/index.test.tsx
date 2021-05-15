@@ -7,13 +7,13 @@ import {
 	act,
 } from '@testing-library/react';
 import CreditCardFormContainer from '../index';
-import { CreditCardFormProps } from '../../../types';
+import { ICreditCardFormProps } from '../../../types';
 
 type Props = {
-	onSubmitCallback: (model: CreditCardFormProps) => Promise<void>;
+	onSubmitCallback: (model: ICreditCardFormProps) => Promise<void>;
 };
 
-const onSubmitCallback: (model: CreditCardFormProps) => Promise<void> =
+const onSubmitCallback: (model: ICreditCardFormProps) => Promise<void> =
 	jest.fn();
 const renderForm = (): RenderResult => {
 	const props: Props = {
@@ -58,11 +58,11 @@ describe('CreditCardForm should', () => {
 		const CvvInput = getByTestId('cvv');
 		fireEvent.change(CvvInput, { target: { value: 'ttt' } });
 		await waitFor(async () => {
-			expect(queryByText(/Credit CVV number is invalid./)).not.toBeNull();
+			expect(queryByText(/Card CVV number is invalid./)).not.toBeNull();
 		});
 		fireEvent.change(CvvInput, { target: { value: '123' } });
 		await waitFor(async () => {
-			expect(queryByText(/Credit CVV number is invalid./)).toBeNull();
+			expect(queryByText(/Card CVV number is invalid./)).toBeNull();
 		});
 	});
 
