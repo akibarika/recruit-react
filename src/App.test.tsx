@@ -4,7 +4,7 @@ import App from './App';
 import {
 	creditCardExpirationDateFormatter,
 	creditCardNumberFormatter,
-} from 'services/cardFormatters';
+} from './services/cardFormatters';
 
 describe('App should', () => {
 	test('renders welcome', () => {
