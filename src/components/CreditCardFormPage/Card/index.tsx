@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ICreditCardFormProps } from '../../../types';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import ReactCardFlip from 'react-card-flip';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -25,15 +26,27 @@ type CardProps = {
 
 const Card: React.FC<CardProps> = (props: CardProps) => {
 	const { cardType, model } = props;
+	const [isFlipped, setIsFlipped] = useState(false);
 	const classes = useStyles();
+	const handleClick = () => {
+		setIsFlipped(!isFlipped);
+	};
 	return (
 		<>
-			<div className={classes.root}>
-				<div className={classes.background}>
-					{cardType}
-					{model.cardNumber}
+			<ReactCardFlip isFlipped={isFlipped} flipDirection="horizontal">
+				<div className={classes.root}>
+					<div className={classes.background}>
+						{cardType}
+						<button onClick={handleClick}>Click to flip</button>
+					</div>
 				</div>
-			</div>
+				<div className={classes.root}>
+					<div className={classes.background}>
+						{model.cardNumber}
+						<button onClick={handleClick}>Click to flip</button>
+					</div>
+				</div>
+			</ReactCardFlip>
 		</>
 	);
 };
