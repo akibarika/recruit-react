@@ -5,6 +5,7 @@ import { RegisterOptions } from 'react-hook-form';
 
 export interface ICreditCardFormProps {
 	cardNumber: string;
+	cardHolder: string;
 	expiration: string;
 	cvv: string;
 }
@@ -56,6 +57,9 @@ export type TranslationsContext = {
 	cardNumberRequired: string;
 	cardNumberInvalid: string;
 	cardNumberPlaceholder: string;
+	cardHolderRequired: string;
+	cardHolderInvalid: string;
+	cardHolderPlaceholder: string;
 	expirationRequired: string;
 	expirationInvalid: string;
 	expirationPlaceholder: string;

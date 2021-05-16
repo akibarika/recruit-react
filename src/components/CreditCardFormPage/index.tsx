@@ -24,6 +24,7 @@ const CreditCardFormPage: React.FC<CreditCardFormPageProps> = (
 		reValidateMode: 'onChange',
 		defaultValues: {
 			cardNumber: '',
+			cardHolder: '',
 			expiration: '',
 			cvv: '',
 		},

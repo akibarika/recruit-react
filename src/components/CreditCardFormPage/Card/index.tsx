@@ -125,7 +125,10 @@ const Card: React.FC<CardProps> = (props: CardProps) => {
 									{translations.cardHolder}
 								</span>
 								<div className={classes.cardInfo}>
-									{translations.cardHolderName}
+									<PlaceholderText
+										value={model.cardHolder}
+										placeholder={translations.cardHolderPlaceholder}
+									/>
 								</div>
 							</div>
 							<div className={classes.cardExpire}>

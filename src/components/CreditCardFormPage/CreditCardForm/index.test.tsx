@@ -4,7 +4,6 @@ import {
 	RenderResult,
 	render,
 	waitFor,
-	act,
 } from '@testing-library/react';
 import CreditCardFormContainer from '../index';
 import { ICreditCardFormProps } from '../../../types';
@@ -53,6 +52,16 @@ describe('CreditCardForm should', () => {
 		});
 	});
 
+	test('validate credit card has card holder name', async () => {
+		const { queryByText, getByTestId } = renderForm();
+		const CardHolderInput = getByTestId('cardHolder');
+		fireEvent.change(CardHolderInput, { target: { value: '' } });
+		fireEvent.click(getByTestId('submit-button'));
+		await waitFor(async () => {
+			expect(queryByText(/Credit Card holder is required./)).not.toBeNull();
+		});
+	});
+
 	test('validate credit card valid cvv', async () => {
 		const { queryByText, getByTestId } = renderForm();
 		const CvvInput = getByTestId('cvv');
@@ -85,6 +94,9 @@ describe('CreditCardForm should', () => {
 		fireEvent.change(getByTestId('cardNumber'), {
 			target: { value: '4111 1111 1111 1111' },
 		});
+		fireEvent.change(getByTestId('cardHolder'), {
+			target: { value: 'Sawyer Lu' },
+		});
 		fireEvent.change(getByTestId('expiration'), { target: { value: '12/22' } });
 		fireEvent.change(getByTestId('cvv'), { target: { value: '123' } });
 		await waitFor(async () => {
@@ -94,6 +106,7 @@ describe('CreditCardForm should', () => {
 		await waitFor(() =>
 			expect(onSubmitCallback).toHaveBeenLastCalledWith({
 				cardNumber: '4111 1111 1111 1111',
+				cardHolder: 'Sawyer Lu',
 				expiration: '12/22',
 				cvv: '123',
 			})

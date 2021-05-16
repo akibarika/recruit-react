@@ -36,6 +36,7 @@ const CreditCardForm: React.FC<CreditCardFormProps> = (
 					cardType={card?.type}
 					model={{
 						cardNumber: model.cardNumber,
+						cardHolder: model.cardHolder,
 						expiration: model.expiration,
 						cvv: model.cvv,
 					}}
@@ -67,6 +68,28 @@ const CreditCardForm: React.FC<CreditCardFormProps> = (
 								return (
 									cardValidator.number(value).isValid ||
 									translations.cardNumberInvalid
+								);
+							},
+						},
+					}}
+					onFocus={() => setIsCvv(false)}
+				/>
+			</Grid>
+			<Grid item xs={12}>
+				<InputFieldController
+					label={translations.cardHolder}
+					name="cardHolder"
+					placeholder={translations.cardHolderName}
+					inputProps={{
+						'data-testid': 'cardHolder',
+					}}
+					rules={{
+						required: translations.cardHolderRequired,
+						validate: {
+							isValid: (value: string) => {
+								return (
+									cardValidator.cardholderName(value).isValid ||
+									translations.cardHolderInvalid
 								);
 							},
 						},
