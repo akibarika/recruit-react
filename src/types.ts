@@ -8,6 +8,7 @@ export interface ICreditCardFormProps {
 	cardHolder: string;
 	expiration: string;
 	cvv: string;
+	expireDate?: Date;
 }
 
 export type InputFieldProps = React.ComponentProps<typeof TextField> & {

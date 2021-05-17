@@ -16,9 +16,9 @@ const theme = createMuiTheme({
 	},
 });
 
-const onSubmitCallback = (card: ICreditCardFormProps): Promise<void> => {
-	console.log('Form submitted successfully with ', card);
-	console.log(`Value is ${JSON.stringify(card)}`);
+const onSubmitCallback = (model: ICreditCardFormProps): Promise<void> => {
+	console.log('Form submitted successfully with ', model);
+	console.log(`Value is ${JSON.stringify(model)}`);
 	return Promise.resolve();
 };
 

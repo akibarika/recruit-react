@@ -1,6 +1,12 @@
-import React, { useState } from 'react';
-import { useFormContext } from 'react-hook-form';
-import { Grid, InputAdornment } from '@material-ui/core';
+import React, { useEffect, useState } from 'react';
+import { useForm, useFormContext } from 'react-hook-form';
+import {
+	Box,
+	Grid,
+	Hidden,
+	InputAdornment,
+	TextField,
+} from '@material-ui/core';
 import IconButton from '@material-ui/core/IconButton';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
@@ -22,13 +28,23 @@ const CreditCardForm: React.FC<CreditCardFormProps> = (
 	const translations = getTranslations(partialTranslations);
 	const [showCvv, setShowCvv] = useState(false);
 	const [isCvv, setIsCvv] = useState(false);
-	const { watch } = useFormContext();
+	const { watch, register, setValue } = useFormContext();
 	const cardNumber = watch('cardNumber');
 	const model = watch();
 	const { card } = cardValidator.number(cardNumber);
 	const handleClickShowCvv = () => {
 		setShowCvv(!showCvv);
 	};
+
+	useEffect(() => {
+		if (model.expiration) {
+			setValue(
+				'expireDate',
+				new Date(model.expiration.replace(/(\d{2})[\/](\d{2})/, '20$2/$1'))
+			);
+		}
+	}, [model.expiration]);
+
 	return (
 		<>
 			<Grid item xs={12}>
@@ -158,6 +174,9 @@ const CreditCardForm: React.FC<CreditCardFormProps> = (
 					}}
 					onFocus={() => setIsCvv(false)}
 				/>
+				<Box display="none">
+					<input {...register('expireDate')} />
+				</Box>
 			</Grid>
 		</>
 	);

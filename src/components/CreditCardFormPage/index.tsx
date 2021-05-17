@@ -6,6 +6,7 @@ import PayButton from './PayButton';
 import CreditCardForm from './CreditCardForm';
 import { ICreditCardFormProps } from '../../types';
 import { CreditCardFormPageProps } from '../../types';
+import { addCard } from '../../adapters/apis';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -32,6 +33,7 @@ const CreditCardFormPage: React.FC<CreditCardFormPageProps> = (
 
 	const onSubmit = async (model: ICreditCardFormProps) => {
 		await onSubmitCallback(model);
+		await addCard(model);
 	};
 	return (
 		<>
