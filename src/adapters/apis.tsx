@@ -1,5 +1,6 @@
 import { ICreditCardFormProps } from '../types';
 import axios from 'axios';
+import config from '../config';
 
 export const addCard = (model: ICreditCardFormProps) =>
-	axios.post(`https://localhost:5001/api/credit-card-form`, model);
+	axios.post(`${config.API_URL}/api/credit-card-form`, model);
