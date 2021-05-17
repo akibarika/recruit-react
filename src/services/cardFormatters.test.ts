@@ -42,7 +42,7 @@ describe('cardFormatters should', () => {
 		${`01/25`} | ${`2025-01`}
 		${`12/12`} | ${`2012-12`}
 	`(
-		'return date formatted $expected when execute $value in it',
+		'return formatted date $expected when execute $value in it',
 		({ value, expected }) => {
 			expect(expirationDateToDate(value)).toEqual(new Date(expected));
 		}
