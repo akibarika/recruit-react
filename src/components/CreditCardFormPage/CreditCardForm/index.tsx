@@ -15,6 +15,7 @@ import InputFieldController from '../InputField/InputFieldController';
 import {
 	creditCardExpirationDateFormatter,
 	creditCardNumberFormatter,
+	expirationDateToDate,
 } from '../../../services/cardFormatters';
 import CardIcon from '../CardIcon';
 import { getTranslations } from '../../../services/translation';
@@ -38,10 +39,7 @@ const CreditCardForm: React.FC<CreditCardFormProps> = (
 
 	useEffect(() => {
 		if (model.expiration) {
-			setValue(
-				'expireDate',
-				new Date(model.expiration.replace(/(\d{2})[\/](\d{2})/, '20$2/$1'))
-			);
+			setValue('expireDate', expirationDateToDate(model.expiration));
 		}
 	}, [model.expiration]);
 

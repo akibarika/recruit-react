@@ -7,6 +7,7 @@ import {
 } from '@testing-library/react';
 import CreditCardFormContainer from '../index';
 import { ICreditCardFormProps } from '../../../types';
+import { expirationDateToDate } from '../../../services/cardFormatters';
 
 type Props = {
 	onSubmitCallback: (model: ICreditCardFormProps) => Promise<void>;
@@ -109,6 +110,7 @@ describe('CreditCardForm should', () => {
 				cardHolder: 'Sawyer Lu',
 				expiration: '12/22',
 				cvv: '123',
+				expireDate: expirationDateToDate('12/22'),
 			})
 		);
 	});

@@ -16,3 +16,7 @@ export const creditCardExpirationDateFormatter = (
 		.replace(/(.{2})/g, '$1/')
 		.substring(0, 5);
 };
+
+export const expirationDateToDate = (value: string) => {
+	return new Date(value.replace(/(\d{2})[\/](\d{2})/, '20$2-$1'));
+};

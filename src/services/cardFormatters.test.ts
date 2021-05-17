@@ -1,6 +1,7 @@
 import {
 	creditCardExpirationDateFormatter,
 	creditCardNumberFormatter,
+	expirationDateToDate,
 } from './cardFormatters';
 
 describe('cardFormatters should', () => {
@@ -32,6 +33,18 @@ describe('cardFormatters should', () => {
 			expect(creditCardExpirationDateFormatter(oldValue, value)).toEqual(
 				expected
 			);
+		}
+	);
+
+	test.each`
+		value      | expected
+		${`11/22`} | ${`2022-11`}
+		${`01/25`} | ${`2025-01`}
+		${`12/12`} | ${`2012-12`}
+	`(
+		'return date formatted $expected when execute $value in it',
+		({ value, expected }) => {
+			expect(expirationDateToDate(value)).toEqual(new Date(expected));
 		}
 	);
 });
